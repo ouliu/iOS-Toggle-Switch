@@ -115,7 +115,7 @@ $.fn.extend({
 	}
 });
 
-$.fn.toggleSwitch.defaults = { distance : 60, on : 'on', off : 'off', speed : 200 };
+$.fn.toggleSwitch.defaults = { on : 'on', off : 'off', speed : 200 };
 $.fn.toggleSwitch.configuration = 
 {
 	big : {

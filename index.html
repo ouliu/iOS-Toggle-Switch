@@ -12,27 +12,136 @@
 			$(function(){
 				$('.toggle-switch').toggleSwitch();
 				$('#foo').change(function(){
-					//console.log($(this).toggleSwitch('val'));
+					var msg = $('#message').html();
+					$('#message').html(msg + 'Switch changed<br/>');
 				});
 				$('#foo').bind('on', function(){
-					console.log($(this).toggleSwitch('val'));
+					var msg = $('#message').html();
+					$('#message').html(msg + 'Switched on<br/>');
 				});
 			});
 		</script>
 	</head>
 	<body>
 		<div id="wrapper">
-			<h1>iPhone Style Toggle Switch using jQuery</h1>
+			<h1>iOS Style Toggle Switch using jQuery</h1>
 
-			<p></p>
-			<p>
+			<ul class="toc">
+				<li><a href="#summary">Summary</a></li>
+				<li><a href="#quick-examples">Quick Examples</a></li>
+				<li><a href="#documentation">Documentation</a>
+					<ul>
+					<li><a href="#basic-usage">Basic Usage</a></li>
+					<li><a href="#options">Options</a></li>
+					<li><a href="#events">Events</a></li>
+					<li><a href="#get-the-value">Get The Value</a></li>
+					</ul>
+				</li>
+				<li><a href="#change-log">Change Log</a></li>
+			</ul>
+
+			<p>Author : <a href="https://github.com/dzy0451/">https://github.com/dzy0451/</a><br/>
+			Github Repo : <a href="https://github.com/dzy0451/iOS-Toggle-Switch">https://github.com/dzy0451/iOS-Toggle-Switch</a></p>
+
+			<h2 id="summary">Summary</h2>
+
+			<p>You cannot count me as an Apple fun, not a crazy one, :) But I do like the toggle switch(checkbox?) on iPhone, iPod etc. Who do not? And in one of my web apps, I want to use such toggle switches to enhance the user experience.</p>
+			<p>So, I created the button graphic in Photoshop and implemented the toggle switch in my app. It all looks good. After that, I figure that maybe guys on the web will need such a toolkit to help buiding their websites. So, I started to work on a jQuery plugin to wrap this up. I'm hoping it may do some good to you guys. :)</p>
+			<p>Let's check some examples first.</p>
+
+			<h2 id="quick-examples">Quick Examples</h2>
+
+			<table style="margin:0 auto;">
+			<tr><td>
+			<label>Default , turned on</label>
+			</td><td>
 			<a id="foo" href="javascript:void(0)" class="toggle-switch" rel="foo"></a>
-			<a href="javascript:void(0)" class="toggle-switch on" rel="foo"></a>
+			</td></tr>
+			<tr><td>
+			<label>Turned off</label>
+			</td><td>
 			<a href="javascript:void(0)" class="toggle-switch off" rel="bar"></a>
+			</td></tr>
+			<tr><td>
+			<label>Small, turned on</label>
+			</td><td>
 			<a href="javascript:void(0)" class="toggle-switch small on" rel="foo2"></a>
+			</td></tr>
+			<tr><td>
+			<label>Small, turned off</label>
+			</td><td>
 			<a href="javascript:void(0)" class="toggle-switch small off" rel="bar2"></a>
+			</td></tr>
+			<tr><td>
+			<label>Of course, the English version</label>
+			</td><td>
 			<a href="javascript:void(0)" class="toggle-switch on en" rel="foo"></a>
-			</p>
+			</td></tr>
+
+			<tr><td colspan="2"><p id="message">
+					<em>Events handling for the Default switch</em><br/>
+					</p></td></tr>
+			</table>
+
+			<h2 id="documentation">Documentation</h2>
+			<h3 id="basic-usage">Basic Usage</h3>
+			<p>The basic is pretty straight forward, just add the js and css files in the header section of you page, and then call the $.fn.toggleSwitch() method.</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot; media=&quot;screen&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;  
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.ios-toggle.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt; 
+$(function(){
+	$('.toggle-switch').toggleSwitch();
+});
+&lt;/script&gt;</code></pre>
+
+			<p>In your HTML, you need to define a &lt;a&gt; tag</p>
+<pre><code>&lt;a href=&quot;javascript:void()&quot; class=&quot;toggle-switch&quot; rel=&quot;foo&quot;&gt;&lt;/a&gt;</code></pre>
+			<a href="javascript:void(0)" class="toggle-switch" rel="foo"></a>
+			<p><strong>The 'rel' attribute</strong> : You need to set the "rel" attribute here, because we need to create a hidden input field to hold the state of the switch, so that you can pass it to the backend via a web form. Here the "rel" attribute sets the name of the hidden input.</p>
+
+			<p><strong>Initial state</strong> : By default, the switch is turned on. To set the initial state of the switch, simply add a class 'on' or 'off' to the &lt;a&gt; tag.</p>
+<pre><code>&lt;a href=&quot;javascript:void()&quot; class=&quot;toggle-switch off&quot; rel=&quot;foo&quot;&gt;&lt;/a&gt;</code></pre>
+			<p><a href="javascript:void(0)" class="toggle-switch off" rel="foo"></a></p>
+			<p><strong>Why it's Chinese?</strong> : Because I am Chinese, so the button defaults to Chinese. :) But you can change it to English by adding the 'en' class.</p>
+<pre><code>&lt;a href=&quot;javascript:void()&quot; class=&quot;toggle-switch en off&quot; rel=&quot;foo&quot;&gt;&lt;/a&gt;</code></pre>
+			<p><a href="javascript:void(0)" class="toggle-switch en off" rel="foo"></a></p>
+			<p><strong>Smaller size</strong> : To make the switch smaller( 46px * 16px ), simply add the 'small' class to it.</p>
+<pre><code>&lt;a href=&quot;javascript:void()&quot; class=&quot;toggle-switch en small off&quot; rel=&quot;foo&quot;&gt;&lt;/a&gt;</code></pre>
+			<p><a href="javascript:void(0)" class="toggle-switch en small" rel="foo"></a></p>
+
+
+			<h3 id="options">Options</h3>
+			<p>When calling the $.fn.toggleSwitch() method, you can pass a object with settings in it. It is pretty simple for now.</p>
+<pre><code>$('.toggle-switch').toggleSwitch({
+	on : 'onValue',
+	off : 'offValue',
+	speed : 100
+});</code></pre>
+			<p><em>on</em> : As mentioned above, we use a hidden input to hold the value of the switch, and this param defines the value when the switch is turned <strong>on</strong>. Defaults to 'on'.</p>
+			<p><em>off</em> : As mentioned above, we use a hidden input to hold the value of the switch, and this param defines the value when the switch is turned <strong>off</strong>. Defaults to 'off'.</p>
+			<p><em>speed</em> : This sets the speed of the slide animation(in milliseconds). Defaults to 200.</p>
+
+			<h3 id="events">Events</h3>
+
+			<p>The toggle switch support 2 custom events. <em>on</em> and <em>off</em>. You can bind callbacks to these events.</p>
+			<pre><code>$('.toggle-switch').bind('on', function(ev){
+	console.log('Switched on');
+});
+$('.toggle-switch').bind('off', function(ev){
+	console.log('Switched off');
+});</code></pre>
+			<h3 id="get-the-value">Get The Value</h3>
+
+			<p>Since we're using an &lt;a&gt; tag as the HTML element to present the toggle switch, we can not use a the $.fn.val() call to fetch the value. So, you will need to use the $.fn.toggleSwitch() call, but with a string param 'val'.</p>
+			<pre><code>$('#foo').toggleSwitch('val');</code></pre>
+
+			<h2 id="change-log">Change Log</h2>
+
+			<p><em>Aug, 11th 2011</em> : Initial version.</p>
+			<div class="footer">
+				<p>Copyright &copy; <a href="https://github.com/dzy0451/">dzy0451</a>
+			</div>
 		</div>
 	</body>
 </html>
