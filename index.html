@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+	<head> 
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+		<title>iPhone Style Toggle Switch</title>
+		<link rel="stylesheet" href="style.css" media="screen" />
+		<link rel="stylesheet" href="css/style.css" media="screen" />
+		<link href='http://fonts.googleapis.com/css?family=Questrial|Alice' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.ios-toggle.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('.toggle-switch').toggleSwitch();
+				$('#foo').change(function(){
+					//console.log($(this).toggleSwitch('val'));
+				});
+				$('#foo').bind('on', function(){
+					console.log($(this).toggleSwitch('val'));
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>iPhone Style Toggle Switch using jQuery</h1>
+
+			<p></p>
+			<p>
+			<a id="foo" href="javascript:void(0)" class="toggle-switch" rel="foo"></a>
+			<a href="javascript:void(0)" class="toggle-switch on" rel="foo"></a>
+			<a href="javascript:void(0)" class="toggle-switch off" rel="bar"></a>
+			<a href="javascript:void(0)" class="toggle-switch small on" rel="foo2"></a>
+			<a href="javascript:void(0)" class="toggle-switch small off" rel="bar2"></a>
+			<a href="javascript:void(0)" class="toggle-switch on en" rel="foo"></a>
+			</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+a.toggle-switch.on,
+a.toggle-switch{
+	display:block;
+	width:100px;
+	height:30px;
+	background:url(img/toggle-switch-zh.png) no-repeat left -31px;
+}
+a.toggle-switch.off{
+	background-position:left -62px;
+}
+
+a.toggle-switch.en{
+	background-image:url(img/toggle-switch-en.png);
+}
+
+a.toggle-switch.small.on,
+a.toggle-switch.small{
+	width:46px;
+	height:16px;
+	background-position:left -110px;
+}
+a.toggle-switch.small.off{
+	background-position:left -127px;
+}
